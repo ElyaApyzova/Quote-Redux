@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux'
-import store from './store';
+import { createStore } from 'redux'
+import quoteReducer from "./reducer/reducer";
 
-
+const store = createStore(quoteReducer)
 
 ReactDOM.render(
   <Provider store={store}>
@@ -13,4 +14,7 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
+
+
+
 

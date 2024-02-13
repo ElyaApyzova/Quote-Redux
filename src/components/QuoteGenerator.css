@@ -10,6 +10,8 @@
 body {
     background-color: #333;
     color: #333;
+    width: 100vw;
+  height: 100vh;
     font-family: "Raleway", sans-serif;
     font-weight: 400;
     display: flex;
@@ -48,7 +50,7 @@ body {
     font-weight: 500;
     font-size: 1.75em;
   }
-  .quote-box .quote-text i {
+  .quote-box .quote-text .quote-icon {
     font-size: 1em;
     margin-right: 0.4em;
   }
@@ -65,7 +67,7 @@ body {
     margin: auto;
     display: block;
   }
-  .quote-box .btn-box .btn-links {
+  .quote-box .btn-box .button {
     height: 38px;
     border: none;
     border-radius: 3px;
@@ -78,11 +80,11 @@ body {
     opacity: 1;
     cursor: pointer;
   }
-  .quote-box .btn-box .btn-links:hover {
+  .quote-box .btn-box .button:hover {
     opacity: 0.9;
   }
-  .quote-box .btn-box .btn-links#github-quote,
-  .quote-box .btn-box .btn-links#instagram-quote {
+  .quote-box .btn-box .button.github-quote,
+  .quote-box .btn-box .button.instagram-quote {
     float: left;
     padding: 0px;
     padding-top: 8px;
@@ -91,7 +93,7 @@ body {
     margin-right: 5px;
     width: 40px;
   }
-  .quote-box .btn-box .btn-links#new-quote {
+  .quote-box .btn-box .button.new-quote {
     float: right;
   }
   

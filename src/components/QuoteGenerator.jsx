@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import './QuoteGenerator.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setRandomColor } from '../action/action';
+import './QuoteGenerator.css'; 
 import QuotesData from "../data";
 import { FaQuoteLeft } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
@@ -8,15 +10,21 @@ import { SiNetlify } from "react-icons/si";
 const QuoteGenerator = () => {
   const [currentQuote, setCurrentQuote] = useState("");
   const [currentAuthor, setCurrentAuthor] = useState("");
-  const [randomColor, setRandomColor] = useState("");
-
+  const dispatch = useDispatch();
+  const randomColor = useSelector((state) => state.randomColor);
+  
+  
   const generateRandomQuote = () => {
     const randomIndex = Math.floor(Math.random() * QuotesData.length);
     const randomQuote = QuotesData[randomIndex];
-
+  
     setCurrentQuote(randomQuote.quote);
     setCurrentAuthor(randomQuote.author);
+  
+    generateRandomColor();
+  };
 
+  const generateRandomColor = () => {
     const colors = [
       "#88AB8E",
       "#9BB8CD",
@@ -31,34 +39,37 @@ const QuoteGenerator = () => {
       "#116A7B",
       "#867070",
     ];
-
+  
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
-    setRandomColor(randomColor);
-  }
+    dispatch(setRandomColor(randomColor));
+  };
 
   return (
+    
+    <body style={{ backgroundColor: randomColor }}>
     <div className="wrapper">
-      <div className="quote-box" style={{ backgroundColor: randomColor }}>
+      <div className="quote-box">
         <div className="quote-text">
-          <FaQuoteLeft />
-          <span id="text">{currentQuote}</span>
+          <span className="quote-icon" style={{ color: randomColor }}><FaQuoteLeft /></span>
+          <span className="text" style={{ color: randomColor }}>{currentQuote}</span>
         </div>
-        <div className="quote-author">
-          - <span id="author">{currentAuthor}</span>
+        <div className="quote-author" style={{ color: randomColor }}>
+          - <span className="author" style={{ color: randomColor }}>{currentAuthor}</span>
         </div>
         <div className="btn-box">
-          <a href="https://github.com/ElyaApyzova" className="btn-links" id="github-quote" title="My Github!" target="_blank">
+          <a href="https://github.com/ElyaApyzova" className="button github-quote" title="My Github!" target="_blank" rel="noreferrer" style={{ backgroundColor: randomColor }}>
             <FaGithub />
           </a>
-          <a href="https://app.netlify.com/teams/elyaapyzova/sites" className="btn-links" id="instagram-quote" title="Post this quote on instagram!" target="_blank">
+          <a href="https://app.netlify.com/teams/elyaapyzova/sites" className="button instagram-quote" title="Post this quote on instagram!" target="_blank" rel="noreferrer" style={{ backgroundColor: randomColor }}>
             <SiNetlify />
           </a>
-          <button onClick={generateRandomQuote}>New quote</button>
+          <button className="button new-quote" onClick={generateRandomQuote} style={{ backgroundColor: randomColor }}>New quote</button>
         </div>
       </div>
       <div className="footer">by <a href="https://github.com/ElyaApyzova">Elnura</a></div>
     </div>
+    </body>
   );
 }
 
-export default QuoteGenerator;
+export default QuoteGenerator

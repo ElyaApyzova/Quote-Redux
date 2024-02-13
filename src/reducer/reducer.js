@@ -1,8 +1,10 @@
-import { SET_QUOTE } from "../action/action"
-
+import { SET_QUOTE, SET_RANDOM_COLOR } from "../action/action"
+import  QuotesData  from "../data"; 
 
 const initialState = {
-    currentQuote: ''
+  currentQuote: QuotesData[0].quote, 
+  currentAuthor: QuotesData[0].author, 
+  randomColor: '',
 }
 
 const quoteReducer = (state = initialState, action) => {
@@ -12,6 +14,11 @@ const quoteReducer = (state = initialState, action) => {
             ...state,
             currentQuote:action.payload
             }
+            case SET_RANDOM_COLOR:
+                return {
+                    ...state,
+                    randomColor:action.payload,
+                }
             default:
                 return state;
             
